@@ -1,0 +1,1773 @@
+{
+	"info": {
+		"_postman_id": "669c0707-caef-4271-87fe-e5507dfbcb64",
+		"name": "TruStamp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10690642",
+		"_collection_link": "https://gold-water-3733.postman.co/workspace/BlockApex~de3e7277-d945-4511-96ed-0c3da02a8327/collection/10690642-669c0707-caef-4271-87fe-e5507dfbcb64?action=share&source=collection_link&creator=10690642"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Nabeel\",\r\n    \"lastName\": \"Khan\",\r\n    \"email\": \"carrier@trustamp.com.au\",\r\n    \"password\": \"Abcd@1234\",\r\n    \"organization_type\": \"684330fc121e34681caf9e8d\",\r\n    \"organization_name\": \"TruStamp Carrier\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check if the response has the access token and set it as an environment variable\r",
+									"if (pm.response.code === 200) {\r",
+									"    const responseData = pm.response.json();\r",
+									"    const token = responseData.data.access_token \r",
+									"    if (token) {\r",
+									"        pm.environment.set(\"token\", token);\r",
+									"        console.log(\"Token set in environment: \", token);\r",
+									"    } else {\r",
+									"        console.log(\"No access token found in the response.\");\r",
+									"    }\r",
+									"} else {\r",
+									"    console.log(\"Response code: \", pm.response.code, \" - Failed to retrieve token.\");\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"nabeel@blockapex.io\",\r\n    \"password\": \"Abcd@12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forget Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check if the response has the access token and set it as an environment variable\r",
+									"if (pm.response.code === 200) {\r",
+									"    const responseData = pm.response.json();\r",
+									"    const token = responseData.data.access_token \r",
+									"    if (token) {\r",
+									"        pm.environment.set(\"token\", token);\r",
+									"        console.log(\"Token set in environment: \", token);\r",
+									"    } else {\r",
+									"        console.log(\"No access token found in the response.\");\r",
+									"    }\r",
+									"} else {\r",
+									"    console.log(\"Response code: \", pm.response.code, \" - Failed to retrieve token.\");\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"nabeel@blockapex.io\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/password/forgot",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"password",
+								"forgot"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check if the response has the access token and set it as an environment variable\r",
+									"if (pm.response.code === 200) {\r",
+									"    const responseData = pm.response.json();\r",
+									"    const token = responseData.data.access_token \r",
+									"    if (token) {\r",
+									"        pm.environment.set(\"token\", token);\r",
+									"        console.log(\"Token set in environment: \", token);\r",
+									"    } else {\r",
+									"        console.log(\"No access token found in the response.\");\r",
+									"    }\r",
+									"} else {\r",
+									"    console.log(\"Response code: \", pm.response.code, \" - Failed to retrieve token.\");\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODQ5NjNhNjE1NmE1YjU1ZTk5MzE2NzUiLCJlbWFpbCI6Im5hYmVlbEBibG9ja2FwZXguaW8iLCJ0ZW1wIjpmYWxzZSwib3JnYW5pemF0aW9uSWQiOiI2ODQ5NjNhMzhhNzZmNmY3Yzk0NjEyYzIiLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJ0d29GYWN0b3JFbmFibGVkIjpmYWxzZSwiaWF0IjoxNzQ5ODA5ODQyLCJleHAiOjE3NDk4OTYyNDJ9.ZaS232PVxmel5KlM7zaGeQbmdfeizWQEgZ9cxbAD5K4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"Abcd@12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/password/reset",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"password",
+								"reset"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2FA",
+			"item": [
+				{
+					"name": "Setup 2FA",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/2fa/setup",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"2fa",
+								"setup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recover 2FA",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"recoveryCode\": \"98723FF1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/2fa/recover",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"2fa",
+								"recover"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify 2FA",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check if the response has the access token and set it as an environment variable\r",
+									"if (pm.response.code === 200) {\r",
+									"    const responseData = pm.response.json();\r",
+									"    const token = responseData.data.access_token \r",
+									"    if (token) {\r",
+									"        pm.environment.set(\"token\", token);\r",
+									"        console.log(\"Token set in environment: \", token);\r",
+									"    } else {\r",
+									"        console.log(\"No access token found in the response.\");\r",
+									"    }\r",
+									"} else {\r",
+									"    console.log(\"Response code: \", pm.response.code, \" - Failed to retrieve token.\");\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"301434\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/2fa/verify",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"2fa",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disable 2FA",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"869411\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/2fa/disable",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"2fa",
+								"disable"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Documents",
+			"item": [
+				{
+					"name": "Open Attestation",
+					"item": [
+						{
+							"name": "Wrap a Document",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/documents/:id/wrap",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"documents",
+										":id",
+										"wrap"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "685174c65fd1f32e61b3a3a5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Issue a Document (Verifiable Flow)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/documents/:id/issue",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"documents",
+										":id",
+										"issue"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "684d7692efa30ee9ece34800"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Assign a Document to Recipient(s)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"emails\": [\"nabeel@blockapex.io\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/documents/:id/assign",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"documents",
+										":id",
+										"assign"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6850ae42db0da7d851f9fb20"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Transfer a Document (Transferable Flow)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/documents/:id/transfer",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"documents",
+										":id",
+										"transfer"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6850ae42db0da7d851f9fb20"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify a Document",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"version\": \"https://schema.openattestation.com/2.0/schema.json\",\r\n    \"data\": {\r\n        \"$template\": {\r\n            \"name\": \"c3b96daa-8710-48d8-8e84-25071e971476:string:Bill of Lading\",\r\n            \"type\": \"41673008-94ea-40d6-98c9-6ef05525029f:string:EMBEDDED_RENDERER\",\r\n            \"url\": \"a528ad2b-9f6a-4d72-9a61-2ae782f6c0f5:string:https://tutorial-renderer.openattestation.com\"\r\n        },\r\n        \"recipient\": {\r\n            \"name\": \"628b2b2e-a173-4bf9-8d6a-7decdaab195b:string:Organization\"\r\n        },\r\n        \"issuers\": [\r\n            {\r\n                \"id\": \"1e361996-87c0-49f4-ba7f-d2908afb8c34:string:6852b70f82f5fdb9a86e0374\",\r\n                \"name\": \"1c4e19ac-b9ce-4d32-a053-90e03562bd4a:string:Organization\",\r\n                \"tokenRegistry\": \"524661ee-a332-4598-b56d-39454e892456:string:0x5ef5ad93A7ae274018418725D73B41d756410e73\",\r\n                \"identityProof\": {\r\n                    \"type\": \"9e87333c-2158-44e3-82fb-fa7e94f20f71:string:DNS-TXT\",\r\n                    \"location\": \"5fdf29bd-fab9-44c6-a097-a3713e85003b:string:blockapex.online\"\r\n                }\r\n            }\r\n        ],\r\n        \"info\": {\r\n            \"scac\": \"b4413092-0268-47ea-860d-699a4bdf6f75:string:SCAC\",\r\n            \"blNum\": \"761811cd-1559-47b6-a581-13851088868b:string:BL-Number#123\",\r\n            \"vessel\": \"de1ed448-f7f4-4109-8058-a06aae2f7b64:string:Vessel\",\r\n            \"voyage\": \"daeb0330-faff-4743-82f8-2d392055550d:string:Voyage Number\",\r\n            \"carrierName\": \"e98be171-1730-4ff1-9e90-0db1e0eaa0e7:string:Nabeel\"\r\n        },\r\n        \"location\": {\r\n            \"portOfLoading\": \"66d7035d-3012-4497-b439-887e612a8129:string:London\",\r\n            \"portOfDischarge\": \"b3eadd53-8daf-4122-905c-d9ac17623ef8:string:US\",\r\n            \"placeOfReceipt\": \"a9753e57-ec69-41c2-9e94-abc7f4aa47b4:string:Canada\",\r\n            \"placeOfDelivery\": \"35e98bf6-80ec-41c0-a2c9-8e87b22c102f:string:Turkey\"\r\n        },\r\n        \"parties\": {\r\n            \"shipperName\": \"6802d0c2-654a-4375-b62a-3b7098311d46:string:Hamza\",\r\n            \"shipperAddress\": \"22466837-67a7-4223-a439-5a1e54168fb9:string:Plot 191 Q \",\r\n            \"consigneeName\": \"e2b513a5-c7c0-47cd-a397-00730579e64a:string:Khan\",\r\n            \"consigneeAddress\": \"3da5ca15-c52e-4ed2-8705-e651cc5d4ec9:string:Plot 191 S\",\r\n            \"notifyPartyName\": \"3b8cf583-a374-49db-a014-6568f2a922ef:string:Nabeel\",\r\n            \"notifyPartyAddress\": \"95a82531-f57a-4621-b35b-5cead9d5c9ec:string:Plot 191 M\"\r\n        },\r\n        \"packages\": [\r\n            {\r\n                \"description\": \"615203cf-1fd2-4afd-823b-3dee10303fcb:string:This is description\",\r\n                \"weight\": \"f257c03c-ee1e-4ad9-bcc2-89f82c75098b:string:2\",\r\n                \"measurement\": \"78c86cb7-a285-4d5b-8738-4eb30c22b4eb:string:4\"\r\n            },\r\n            {\r\n                \"description\": \"0905614f-14aa-4293-b226-1068822ae505:string:This is 2nd description\",\r\n                \"weight\": \"480bc99c-0fcb-410e-848e-3164ecef1526:string:4\",\r\n                \"measurement\": \"45a8ed39-db30-4a15-b4eb-e1f6e427d607:string:6\"\r\n            }\r\n        ],\r\n        \"id\": \"a1451c8c-28ed-4826-89ce-dc104e5ade02:string:6852baa182f5fdb9a86e03e3\",\r\n        \"name\": \"4ddf3651-4d9b-4588-beaa-6fa8d161cf4b:string:Trade Document\",\r\n        \"issueDate\": \"968d96ee-3c54-474d-bc86-1d96d2e8c90f:string:2025-06-18T13:10:36.965Z\",\r\n        \"validFrom\": \"10573d04-f60d-438f-8434-dfa5155941a1:string:2025-06-18T13:10:36.965Z\"\r\n    },\r\n    \"signature\": {\r\n        \"type\": \"SHA3MerkleProof\",\r\n        \"targetHash\": \"ad274eea5e01b8342be83405257e7a990b6bb043109b40d7a0889da08b3d9c54\",\r\n        \"proof\": [],\r\n        \"merkleRoot\": \"ad274eea5e01b8342be83405257e7a990b6bb043109b40d7a0889da08b3d9c54\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/documents/verify",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"documents",
+										"verify"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get All Documents",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/documents?status=issued",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"documents"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "issued"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Transferable Documents",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/documents/transferable",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"documents",
+								"transferable"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Assigned Documents",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/documents/assigned",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"documents",
+								"assigned"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Document",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/documents/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"documents",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Document",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"sub_type\": \"684996a044ed71936d0d90d6\",\r\n  \"data\": {\r\n    \"status\": \"pending\",\r\n    \"details\": {\r\n      \"invoiceId\": \"INV-2025-001\",\r\n      \"date\": \"2025-06-12\"\r\n    },\r\n    \"billFrom\": {\r\n      \"companyName\": \"ExportCo Ltd\",\r\n      \"address\": \"123 Export Street\",\r\n      \"city\": \"Singapore\",\r\n      \"postalCode\": \"198964\",\r\n      \"phone\": \"+65 9123 4567\"\r\n    },\r\n    \"billTo\": {\r\n      \"companyName\": \"ImportCo Ltd\",\r\n      \"address\": \"456 Import Avenue\",\r\n      \"city\": \"Hong Kong\",\r\n      \"postalCode\": \"999077\",\r\n      \"phone\": \"+852 9876 5432\",\r\n      \"contactName\": \"John Importer\"\r\n    },\r\n    \"billableItems\": [\r\n      {\r\n        \"description\": \"Shipping Container Fee\",\r\n        \"quantity\": \"1\",\r\n        \"unitPrice\": \"1500.00\",\r\n        \"amount\": \"1500.00\"\r\n      },\r\n      {\r\n        \"description\": \"Documentation Fee\",\r\n        \"quantity\": \"1\",\r\n        \"unitPrice\": \"250.00\",\r\n        \"amount\": \"250.00\"\r\n      }\r\n    ],\r\n    \"organization_name\": \"ExportCo Ltd\",\r\n    \"wallet_address\": \"0x1234567890abcdef1234567890abcdef12345678\"\r\n  },\r\n  \"shouldProcess\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/documents",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"documents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Document",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/documents/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"documents",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Document Status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"verified\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/documents/:id/status",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"documents",
+								":id",
+								"status"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6839a622d4809202b1881324"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Document",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/documents/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"documents",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Organization",
+			"item": [
+				{
+					"name": "Get All Organizations",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/organizations",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"organizations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Organization",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/organizations/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"organizations",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Organization",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/organizations",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"organizations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Organization",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/organizations/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"organizations",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Organization",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/organizations/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"organizations",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Organization Type",
+			"item": [
+				{
+					"name": "Get All Organization Types",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/organization-types",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"organization-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Organization Type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/organization-types/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"organization-types",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Organization Type",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/organization-types",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"organization-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Organization Type",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/organization-types/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"organization-types",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Organization Type",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/organization-types/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"organization-types",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Invitation",
+			"item": [
+				{
+					"name": "List Invites",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/invitation?status",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"invitation"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": null,
+									"description": "the value can be `pending` | `accepted` | `revoked`"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Invite",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/invitation/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"invitation",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send an invite",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"nabeel@blockapex.io\",\r\n    \"role\": \"org_member\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/invitation",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"invitation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Accept an invite",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"9d489012b5bce9a9cedc5443b249c1460f16971cee14e9f4c12749f41b6c8fbd\",\r\n    \"password\": \"Abcd@1234\",\r\n    \"firstName\": \"Nabeel\",\r\n    \"lastName\": \"Khan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/invitation/accept",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"invitation",
+								"accept"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resend an invite",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/invitation/:id/resend",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"invitation",
+								":id",
+								"resend"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "684853284045644b2a866466"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Revoke an invite",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/invitation/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"invitation",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "684853284045644b2a866466"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get Logged In User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user/me",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Organization by User Email",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user/org?email=nabeel@blockapex.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"org"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "nabeel@blockapex.com"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Settings",
+			"item": [
+				{
+					"name": "Get All Settings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/settings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch a Setting",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/settings/:key",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"settings",
+								":key"
+							],
+							"variable": [
+								{
+									"key": "key",
+									"value": "documentType"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Setting",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"value\": [\"Trade Document\", \"Certificate of Authentication\", \"Government Issued Document\", \"Environmental Product Declaration\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/settings/:key",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"settings",
+								":key"
+							],
+							"variable": [
+								{
+									"key": "key",
+									"value": "documentType"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Setting",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"value\": [\"Trade Document\", \"Certificate of Authentication\", \"Government Issued Document\", \"Environmental Product Declaration\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/settings/:key",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"settings",
+								":key"
+							],
+							"variable": [
+								{
+									"key": "key",
+									"value": "documentType"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Document Templates",
+			"item": [
+				{
+					"name": "Get Document Types",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/document-template/types",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"document-template",
+								"types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Document Templates",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/document-template",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"document-template"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Document Template",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/document-template/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"document-template",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Document Template",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type\": \"Trade Document\",\r\n  \"sub_type\": \"Verifiable Invoice\",\r\n  \"description\": \"A template for verifiable invoices issued to clients.\",\r\n  \"schema\": {\r\n    \"type\": \"object\",\r\n    \"properties\": {\r\n      \"status\": {\r\n        \"type\": \"string\",\r\n        \"label\": \"Status\",\r\n        \"description\": \"The current status of the invoice.\",\r\n        \"enum\": [\r\n          \"pending\",\r\n          \"issued\",\r\n          \"paid\"\r\n        ]\r\n      },\r\n      \"details\": {\r\n        \"type\": \"object\",\r\n        \"label\": \"Details\",\r\n        \"description\": \"General details about the invoice.\",\r\n        \"properties\": {\r\n          \"invoiceId\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Invoice ID\",\r\n            \"description\": \"Unique identifier for the invoice.\"\r\n          },\r\n          \"date\": {\r\n            \"type\": \"string\",\r\n            \"format\": \"date\",\r\n            \"label\": \"Invoice Date\",\r\n            \"description\": \"Date on which the invoice was issued.\"\r\n          }\r\n        },\r\n        \"required\": [\r\n          \"invoiceId\",\r\n          \"date\"\r\n        ]\r\n      },\r\n      \"billFrom\": {\r\n        \"type\": \"object\",\r\n        \"label\": \"Bill From\",\r\n        \"description\": \"Information about the issuer of the invoice.\",\r\n        \"properties\": {\r\n          \"companyName\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Company Name\",\r\n            \"description\": \"Name of the company issuing the invoice.\"\r\n          },\r\n          \"address\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Address\",\r\n            \"description\": \"Address of the company issuing the invoice.\"\r\n          },\r\n          \"city\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"City\",\r\n            \"description\": \"City of the company issuing the invoice.\"\r\n          },\r\n          \"postalCode\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Postal Code\",\r\n            \"description\": \"Postal code of the company issuing the invoice.\"\r\n          },\r\n          \"phone\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Phone\",\r\n            \"description\": \"Contact phone number of the company issuing the invoice.\"\r\n          }\r\n        },\r\n        \"required\": [\r\n          \"companyName\",\r\n          \"address\",\r\n          \"city\",\r\n          \"postalCode\",\r\n          \"phone\"\r\n        ]\r\n      },\r\n      \"billTo\": {\r\n        \"type\": \"object\",\r\n        \"label\": \"Bill To\",\r\n        \"description\": \"Information about the recipient of the invoice.\",\r\n        \"properties\": {\r\n          \"companyName\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Company Name\",\r\n            \"description\": \"Name of the company receiving the invoice.\"\r\n          },\r\n          \"address\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Address\",\r\n            \"description\": \"Address of the company receiving the invoice.\"\r\n          },\r\n          \"city\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"City\",\r\n            \"description\": \"City of the company receiving the invoice.\"\r\n          },\r\n          \"postalCode\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Postal Code\",\r\n            \"description\": \"Postal code of the company receiving the invoice.\"\r\n          },\r\n          \"phone\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Phone\",\r\n            \"description\": \"Contact phone number of the company receiving the invoice.\"\r\n          },\r\n          \"contactName\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Contact Name\",\r\n            \"description\": \"Name of the contact person at the recipient company.\"\r\n          }\r\n        },\r\n        \"required\": [\r\n          \"companyName\",\r\n          \"address\",\r\n          \"city\",\r\n          \"postalCode\",\r\n          \"phone\",\r\n          \"contactName\"\r\n        ]\r\n      },\r\n      \"billableItems\": {\r\n        \"type\": \"array\",\r\n        \"label\": \"Billable Items\",\r\n        \"description\": \"List of items or services billed in this invoice.\",\r\n        \"items\": {\r\n          \"type\": \"object\",\r\n          \"label\": \"Item\",\r\n          \"properties\": {\r\n            \"description\": {\r\n              \"type\": \"string\",\r\n              \"label\": \"Description\",\r\n              \"description\": \"Description of the billed item or service.\"\r\n            },\r\n            \"quantity\": {\r\n              \"type\": \"string\",\r\n              \"label\": \"Quantity\",\r\n              \"description\": \"Quantity of the item or service.\"\r\n            },\r\n            \"unitPrice\": {\r\n              \"type\": \"string\",\r\n              \"label\": \"Unit Price\",\r\n              \"description\": \"Price per unit of the item or service.\"\r\n            },\r\n            \"amount\": {\r\n              \"type\": \"string\",\r\n              \"label\": \"Amount\",\r\n              \"description\": \"Total amount for this item (quantity x unit price).\"\r\n            }\r\n          },\r\n          \"required\": [\r\n            \"description\",\r\n            \"quantity\",\r\n            \"unitPrice\",\r\n            \"amount\"\r\n          ]\r\n        }\r\n      }\r\n    },\r\n    \"required\": [\r\n      \"status\",\r\n      \"details\",\r\n      \"billFrom\",\r\n      \"billTo\",\r\n      \"billableItems\"\r\n    ]\r\n  },\r\n  \"allowed_organization_type_ids\": [\r\n    \"684330fc121e34681caf9e8d\"\r\n  ],\r\n  \"is_active\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/document-template",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"document-template"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Document Template",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type\": \"Trade Document\",\r\n  \"sub_type\": \"Verifiable Invoice\",\r\n  \"description\": \"A template for verifiable invoices issued to clients.\",\r\n  \"schema\": {\r\n    \"type\": \"object\",\r\n    \"properties\": {\r\n      \"status\": {\r\n        \"type\": \"string\",\r\n        \"label\": \"Status\",\r\n        \"description\": \"The current status of the invoice.\",\r\n        \"enum\": [\r\n          \"pending\",\r\n          \"issued\",\r\n          \"paid\"\r\n        ]\r\n      },\r\n      \"details\": {\r\n        \"type\": \"object\",\r\n        \"label\": \"Details\",\r\n        \"description\": \"General details about the invoice.\",\r\n        \"properties\": {\r\n          \"invoiceId\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Invoice ID\",\r\n            \"description\": \"Unique identifier for the invoice.\"\r\n          },\r\n          \"date\": {\r\n            \"type\": \"string\",\r\n            \"format\": \"date\",\r\n            \"label\": \"Invoice Date\",\r\n            \"description\": \"Date on which the invoice was issued.\"\r\n          }\r\n        },\r\n        \"required\": [\r\n          \"invoiceId\",\r\n          \"date\"\r\n        ]\r\n      },\r\n      \"billFrom\": {\r\n        \"type\": \"object\",\r\n        \"label\": \"Bill From\",\r\n        \"description\": \"Information about the issuer of the invoice.\",\r\n        \"properties\": {\r\n          \"companyName\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Company Name\",\r\n            \"description\": \"Name of the company issuing the invoice.\"\r\n          },\r\n          \"address\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Address\",\r\n            \"description\": \"Address of the company issuing the invoice.\"\r\n          },\r\n          \"city\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"City\",\r\n            \"description\": \"City of the company issuing the invoice.\"\r\n          },\r\n          \"postalCode\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Postal Code\",\r\n            \"description\": \"Postal code of the company issuing the invoice.\"\r\n          },\r\n          \"phone\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Phone\",\r\n            \"description\": \"Contact phone number of the company issuing the invoice.\"\r\n          }\r\n        },\r\n        \"required\": [\r\n          \"companyName\",\r\n          \"address\",\r\n          \"city\",\r\n          \"postalCode\",\r\n          \"phone\"\r\n        ]\r\n      },\r\n      \"billTo\": {\r\n        \"type\": \"object\",\r\n        \"label\": \"Bill To\",\r\n        \"description\": \"Information about the recipient of the invoice.\",\r\n        \"properties\": {\r\n          \"companyName\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Company Name\",\r\n            \"description\": \"Name of the company receiving the invoice.\"\r\n          },\r\n          \"address\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Address\",\r\n            \"description\": \"Address of the company receiving the invoice.\"\r\n          },\r\n          \"city\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"City\",\r\n            \"description\": \"City of the company receiving the invoice.\"\r\n          },\r\n          \"postalCode\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Postal Code\",\r\n            \"description\": \"Postal code of the company receiving the invoice.\"\r\n          },\r\n          \"phone\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Phone\",\r\n            \"description\": \"Contact phone number of the company receiving the invoice.\"\r\n          },\r\n          \"contactName\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Contact Name\",\r\n            \"description\": \"Name of the contact person at the recipient company.\"\r\n          }\r\n        },\r\n        \"required\": [\r\n          \"companyName\",\r\n          \"address\",\r\n          \"city\",\r\n          \"postalCode\",\r\n          \"phone\",\r\n          \"contactName\"\r\n        ]\r\n      },\r\n      \"billableItems\": {\r\n        \"type\": \"array\",\r\n        \"label\": \"Billable Items\",\r\n        \"description\": \"List of items or services billed in this invoice.\",\r\n        \"items\": {\r\n          \"type\": \"object\",\r\n          \"label\": \"Item\",\r\n          \"properties\": {\r\n            \"description\": {\r\n              \"type\": \"string\",\r\n              \"label\": \"Description\",\r\n              \"description\": \"Description of the billed item or service.\"\r\n            },\r\n            \"quantity\": {\r\n              \"type\": \"string\",\r\n              \"label\": \"Quantity\",\r\n              \"description\": \"Quantity of the item or service.\"\r\n            },\r\n            \"unitPrice\": {\r\n              \"type\": \"string\",\r\n              \"label\": \"Unit Price\",\r\n              \"description\": \"Price per unit of the item or service.\"\r\n            },\r\n            \"amount\": {\r\n              \"type\": \"string\",\r\n              \"label\": \"Amount\",\r\n              \"description\": \"Total amount for this item (quantity x unit price).\"\r\n            }\r\n          },\r\n          \"required\": [\r\n            \"description\",\r\n            \"quantity\",\r\n            \"unitPrice\",\r\n            \"amount\"\r\n          ]\r\n        }\r\n      }\r\n    },\r\n    \"required\": [\r\n      \"status\",\r\n      \"details\",\r\n      \"billFrom\",\r\n      \"billTo\",\r\n      \"billableItems\"\r\n    ]\r\n  },\r\n  \"allowed_organization_type_ids\": [\r\n    \"684330fc121e34681caf9e8d\"\r\n  ],\r\n  \"is_active\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/document-template/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"document-template",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Document Template",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type\": \"Trade Document\",\r\n  \"sub_type\": \"Verifiable Invoice\",\r\n  \"description\": \"A template for verifiable invoices issued to clients.\",\r\n  \"schema\": {\r\n    \"type\": \"object\",\r\n    \"properties\": {\r\n      \"status\": {\r\n        \"type\": \"string\",\r\n        \"label\": \"Status\",\r\n        \"description\": \"The current status of the invoice.\",\r\n        \"enum\": [\r\n          \"pending\",\r\n          \"issued\",\r\n          \"paid\"\r\n        ]\r\n      },\r\n      \"details\": {\r\n        \"type\": \"object\",\r\n        \"label\": \"Details\",\r\n        \"description\": \"General details about the invoice.\",\r\n        \"properties\": {\r\n          \"invoiceId\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Invoice ID\",\r\n            \"description\": \"Unique identifier for the invoice.\"\r\n          },\r\n          \"date\": {\r\n            \"type\": \"string\",\r\n            \"format\": \"date\",\r\n            \"label\": \"Invoice Date\",\r\n            \"description\": \"Date on which the invoice was issued.\"\r\n          }\r\n        },\r\n        \"required\": [\r\n          \"invoiceId\",\r\n          \"date\"\r\n        ]\r\n      },\r\n      \"billFrom\": {\r\n        \"type\": \"object\",\r\n        \"label\": \"Bill From\",\r\n        \"description\": \"Information about the issuer of the invoice.\",\r\n        \"properties\": {\r\n          \"companyName\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Company Name\",\r\n            \"description\": \"Name of the company issuing the invoice.\"\r\n          },\r\n          \"address\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Address\",\r\n            \"description\": \"Address of the company issuing the invoice.\"\r\n          },\r\n          \"city\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"City\",\r\n            \"description\": \"City of the company issuing the invoice.\"\r\n          },\r\n          \"postalCode\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Postal Code\",\r\n            \"description\": \"Postal code of the company issuing the invoice.\"\r\n          },\r\n          \"phone\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Phone\",\r\n            \"description\": \"Contact phone number of the company issuing the invoice.\"\r\n          }\r\n        },\r\n        \"required\": [\r\n          \"companyName\",\r\n          \"address\",\r\n          \"city\",\r\n          \"postalCode\",\r\n          \"phone\"\r\n        ]\r\n      },\r\n      \"billTo\": {\r\n        \"type\": \"object\",\r\n        \"label\": \"Bill To\",\r\n        \"description\": \"Information about the recipient of the invoice.\",\r\n        \"properties\": {\r\n          \"companyName\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Company Name\",\r\n            \"description\": \"Name of the company receiving the invoice.\"\r\n          },\r\n          \"address\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Address\",\r\n            \"description\": \"Address of the company receiving the invoice.\"\r\n          },\r\n          \"city\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"City\",\r\n            \"description\": \"City of the company receiving the invoice.\"\r\n          },\r\n          \"postalCode\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Postal Code\",\r\n            \"description\": \"Postal code of the company receiving the invoice.\"\r\n          },\r\n          \"phone\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Phone\",\r\n            \"description\": \"Contact phone number of the company receiving the invoice.\"\r\n          },\r\n          \"contactName\": {\r\n            \"type\": \"string\",\r\n            \"label\": \"Contact Name\",\r\n            \"description\": \"Name of the contact person at the recipient company.\"\r\n          }\r\n        },\r\n        \"required\": [\r\n          \"companyName\",\r\n          \"address\",\r\n          \"city\",\r\n          \"postalCode\",\r\n          \"phone\",\r\n          \"contactName\"\r\n        ]\r\n      },\r\n      \"billableItems\": {\r\n        \"type\": \"array\",\r\n        \"label\": \"Billable Items\",\r\n        \"description\": \"List of items or services billed in this invoice.\",\r\n        \"items\": {\r\n          \"type\": \"object\",\r\n          \"label\": \"Item\",\r\n          \"properties\": {\r\n            \"description\": {\r\n              \"type\": \"string\",\r\n              \"label\": \"Description\",\r\n              \"description\": \"Description of the billed item or service.\"\r\n            },\r\n            \"quantity\": {\r\n              \"type\": \"string\",\r\n              \"label\": \"Quantity\",\r\n              \"description\": \"Quantity of the item or service.\"\r\n            },\r\n            \"unitPrice\": {\r\n              \"type\": \"string\",\r\n              \"label\": \"Unit Price\",\r\n              \"description\": \"Price per unit of the item or service.\"\r\n            },\r\n            \"amount\": {\r\n              \"type\": \"string\",\r\n              \"label\": \"Amount\",\r\n              \"description\": \"Total amount for this item (quantity x unit price).\"\r\n            }\r\n          },\r\n          \"required\": [\r\n            \"description\",\r\n            \"quantity\",\r\n            \"unitPrice\",\r\n            \"amount\"\r\n          ]\r\n        }\r\n      }\r\n    },\r\n    \"required\": [\r\n      \"status\",\r\n      \"details\",\r\n      \"billFrom\",\r\n      \"billTo\",\r\n      \"billableItems\"\r\n    ]\r\n  },\r\n  \"allowed_organization_type_ids\": [\r\n    \"684330fc121e34681caf9e8d\"\r\n  ],\r\n  \"is_active\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/document-template/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"document-template",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notifications",
+			"item": [
+				{
+					"name": "Get Notifications",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/notifications",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"notifications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Updates Notification Status(es)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/notifications?id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"notifications"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": null,
+									"description": "optional; if sent will update the status of only one document"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send a Notification (testing)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"DocumentCreated\",\r\n    \"message\": \"hello\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/notifications",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"notifications"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
